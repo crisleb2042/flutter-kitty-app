@@ -48,14 +48,14 @@ final String server = defaultTargetPlatform == TargetPlatform.android ? "10.0.2.
 
 final List<Kitten> _kittens = <Kitten> [
   const Kitten (
-    name: 'Mittens',
-    description: 'The pinnacle of cats.',
-    age: 11,
+    name: 'Boston',
+    description: 'The pinnacle of cats',
+    age: 2,
     imageURL: 'assets/images/kitten0.jpg'),
   const Kitten(
-    name: 'Scooter', 
-    description: 'Kittah 2', 
-    age: 8, 
+    name: 'Scratchy', 
+    description: 'Loves playing with yarn', 
+    age: 4, 
     imageURL: 'assets/images/kitten1.jpg'),
 ];
 
@@ -93,9 +93,49 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _dialogBuilder(BuildContext context, Kitten kitten) {
     return SimpleDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero,
+      ),
+      contentPadding: EdgeInsets.zero,
       children: [
-        Image.asset(kitten.imageURL,
-        fit: BoxFit.fill,
+        Image.asset(
+          kitten.imageURL,
+          fit: BoxFit.cover,
+          height: 300,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                kitten.name,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              Text('${kitten.age} months old'),
+              Text(kitten.description),
+              const SizedBox(
+                height: 15,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Wrap(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('I\'m Allergic'),
+                    ),
+                    FilledButton(
+                      onPressed: () {},
+                      child: const Text('Adopt Me!')
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ],
     );
@@ -108,10 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) => _dialogBuilder(context, _kittens[index])
       ),
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8.0),
         alignment: Alignment.centerLeft,
         child: Text(_kittens[index].name,
-        style: Theme.of(context).textTheme.headlineLarge),
+        style: Theme.of(context).textTheme.bodyMedium),
       ),
     );
   }
@@ -134,10 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: ListView.builder(
-        itemCount: _kittens.length, 
-        itemExtent: 60.0, 
-        itemBuilder: _listItemBuilder,
+      body: 
+        ListView.separated(
+          itemCount: _kittens.length,
+          itemBuilder: _listItemBuilder,
+          separatorBuilder: (context, index) => const Divider(height:10),
+          
         )
  // This trailing comma makes auto-formatting nicer for build methods.
     );

@@ -1,16 +1,25 @@
-# material_design_couse
+# Flutter-Kitty-App
 
-A new Flutter project.
+This Flutter app, built with Dart, demonstrates a simple yet effective use of ListView to display a list of kitten objects. Each kitten object includes attributes such as name, age, and breed, which are dynamically rendered in the list.
+
+Features
+ListView Implementation: Efficiently displays a scrollable list of kitten objects.
+Dynamic Data Rendering: Each kitten’s details (name, age, breed) are displayed in a user-friendly format.
+Responsive UI: Ensures a smooth and responsive user experience across different devices.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone the repository
 
-A few resources to get you started if this is your first Flutter project:
+2. Navigate to the project directory
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. Install dependencies
+```flutter pub get```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Run the app
+```flutter run```
+
+### TroubleShooting
+
+Run:
+```flutter doctor```

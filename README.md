@@ -21,5 +21,8 @@ Responsive UI: Ensures a smooth and responsive user experience across different 
 
 ### TroubleShooting
 
-Run:
+To check for any missing dependencies or issues with your setup run:
+
 ```flutter doctor```
+
+This command provides a detailed report of your environment and any potential problems.

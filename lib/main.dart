@@ -47,11 +47,16 @@ class Kitten {
 final String server = defaultTargetPlatform == TargetPlatform.android ? "10.0.2.2" : "localhost";
 
 final List<Kitten> _kittens = <Kitten> [
-  Kitten (name: 'Mittens',
-  description: 'The pinnacle of cats.',
-  age: 11,
-  imageURL: 'http://$server:8000/kitten0.jpg'),
-  Kitten(name: 'Scooter', description: 'Kittah 2', age: 8, imageURL: 'http://$server:8000/kitten1.jpg')
+  const Kitten (
+    name: 'Mittens',
+    description: 'The pinnacle of cats.',
+    age: 11,
+    imageURL: 'assets/images/kitten0.jpg'),
+  const Kitten(
+    name: 'Scooter', 
+    description: 'Kittah 2', 
+    age: 8, 
+    imageURL: 'assets/images/kitten1.jpg'),
 ];
 
 class MyHomePage extends StatefulWidget {
@@ -86,12 +91,28 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget _dialogBuilder(BuildContext context, Kitten kitten) {
+    return SimpleDialog(
+      children: [
+        Image.asset(kitten.imageURL,
+        fit: BoxFit.fill,
+        ),
+      ],
+    );
+  }
+
   Widget _listItemBuilder(BuildContext context, int index) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      alignment: Alignment.centerLeft,
-      child: Text(_kittens[index].name,
-      style: Theme.of(context).textTheme.headlineLarge),
+    return GestureDetector(
+      onTap: () => showDialog(
+        context: context,
+        builder: (context) => _dialogBuilder(context, _kittens[index])
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        alignment: Alignment.centerLeft,
+        child: Text(_kittens[index].name,
+        style: Theme.of(context).textTheme.headlineLarge),
+      ),
     );
   }
 
